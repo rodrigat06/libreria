@@ -1,0 +1,265 @@
+/* PÁGINA ENTERA EN CREMITA OSCURO */
+html, body {
+    background: #e8dcc7;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: block;
+}
+
+/* CONTENEDOR */
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+    background: transparent;
+}
+
+/* BARRA LATERAL IZQUIERDA */
+.sidebar {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+/* BOTONES LATERALES BASE */
+.side-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.25);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ❤️ PRIMER BOTÓN DE LA BARRA IZQUIERDA: CORAZÓN */
+.heart-btn,
+.book-btn,
+.user-btn,
+.bookmark-btn {
+    background: none !important;
+    border: none;
+    padding: 0;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart-btn img,
+.book-btn img,
+.user-btn img,
+.bookmark-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* CONTENIDO CENTRAL */
+.main {
+    padding: 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+}
+
+/* BOTÓN IZQUIERDA — ICONO APLICADO AQUÍ */
+.main-left-btn {
+    position: absolute;
+    left: -50px;
+    top: -30px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.main-left-btn img { 
+    width: 100%; 
+    height: 100%; 
+    display: block;
+}
+
+/* BARRA DE BÚSQUEDA */
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-wrapper input {
+    width: 80%;
+    padding: 20px 25px;
+    font-size: 20px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background: rgba(163, 104, 79, 0.55);
+    backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+/* GRID DE LIBROS */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    justify-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.book {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cover {
+    width: 160px;
+    height: 220px;
+    background: linear-gradient(135deg, #d9a45f, #8a4b2e);
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+}
+
+.label {
+    color: #000;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* BOTONES INFERIORES DERECHA */
+.bottom-right-buttons {
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    display: flex;
+    gap: 12px;
+}
+
+.br-btn,
+.triangle-btn,
+.profile-btn,
+.adduser-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.br-btn img,
+.triangle-btn img,
+.profile-btn img,
+.adduser-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+a { text-decoration: none; }
+
+/* 📱 RESPONSIVE PARA MÓVILES */
+@media (max-width: 600px) {
+
+    /* Cambia el layout general */
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    /* Barra lateral pasa arriba en horizontal */
+    .sidebar {
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px 0;
+        gap: 15px;
+    }
+
+    .side-icon,
+    .heart-btn,
+    .book-btn,
+    .user-btn,
+    .bookmark-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Contenido central */
+    .main {
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    .main-left-btn {
+        display: none; /* Oculto en móvil para no romper diseño */
+    }
+
+    /* Barra de búsqueda */
+    .search-wrapper input {
+        width: 95%;
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    /* Grid de libros: 2 columnas en móvil */
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .cover {
+        width: 130px;
+        height: 180px;
+    }
+
+    .label {
+        font-size: 14px;
+    }
+
+    /* Botones inferiores derecha */
+    .bottom-right-buttons {
+        position: static;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .br-btn,
+    .triangle-btn,
+    .profile-btn,
+    .adduser-btn {
+        width: 50px;
+        height: 50px;
+    }
+}
