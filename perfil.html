@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+
+    <style>
+        html, body {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+        body {
+            background: #e8dcc7;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 150px;
+            background: none;
+            height: auto;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+        }
+
+        .side-icon {
+            background: none;
+            border: none;
+            padding: 0;
+            width: 75px;
+            height: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .side-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            position: relative;
+            margin-left: 150px;
+        }
+
+        .main-left-btn {
+            position: absolute;
+            left: -50px;
+            top: -20px;
+            width: 150px;
+            height: 150px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .main-left-btn img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .right-buttons {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .right-buttons img {
+            width: 70px;
+            height: 70px;
+            cursor: pointer;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #5a2f1f;
+        }
+
+        .username {
+            font-size: 32px;
+            margin-top: 10px;
+            color: #5a2f1f;
+        }
+
+        .stars {
+            margin-top: 10px;
+        }
+
+        .star {
+            font-size: 40px;
+            cursor: pointer;
+            color: #b8a89a;
+        }
+
+        .star.active {
+            color: gold;
+        }
+
+        .section-title {
+            font-size: 26px;
+            margin-top: 20px;
+            color: #5a2f1f;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .upload-btn {
+            padding: 10px 20px;
+            background: #a3684f;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .upload-btn:hover {
+            background: #8a533f;
+        }
+
+        .book-list {
+            background: rgba(163, 104, 79, 0.35);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 5px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .book-item {
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .book-cover {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            margin-left: auto;
+        }
+
+        .delete-btn img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+        <button class="side-icon" onclick="window.location.href='favoritos.html'">
+            <img src="BCO.4772516f-4e39-4860-9f5f-9026741e106a.png">
+        </button>
+
+        <button class="side-icon book-btn" onclick="window.location.href='escribiendo.html'">
+    <img src="libro.png" alt="libro" />
+  </button>
+
+        <button class="side-icon user-btn" onclick="window.location.href='perfil.html'">
+    <img src="perfil.png" alt="usuario" />
+  </button>
+
+    
+    </aside>
+
+    <!-- CONTENIDO -->
+    <div class="main-content">
+
+        <a href=".html">
+            <button class="main-left-btn">
+                <img src="Copilot_20260220_125130.png">
+            </button>
+        </a>
+
+        <div class="right-buttons">
+            <a href="https://www.instagram.com/" target="_blank">
+                <img src="instagram.png">
+            </a>
+            <a href="https://www.facebook.com/" target="_blank">
+                <img src="facebook.png">
+            </a>
+        </div>
+
+        <!-- PERFIL -->
+        <div class="profile-section">
+            <label for="profile-input">
+                <img id="profile-pic" src="perfil.png" class="profile-pic">
+            </label>
+            <input type="file" id="profile-input" accept="image/*" style="display:none;">
+
+            <div class="username">Nombre de Usuario</div>
+
+            <div class="stars" id="stars">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+
+        <!-- LIBROS SUBIDOS -->
+        <div class="section-title">Libros subidos</div>
+
+        <div class="upload-section">
+            <label>Subir PDF del libro:</label>
+            <input type="file" id="pdf-input" accept="application/pdf" style="display:none;"> 
+            <button class="upload-btn" id="pdf-btn">Seleccionar PDF</button> 
+            <span id="pdf-name" style="margin-left:10px; color:#5a2f1f;"></span>
+
+            <label>Subir documento de derechos de autor:</label>
+            <input type="file" id="rights-input" accept=".pdf,.jpg,.png" style="display:none;"> 
+            <button class="upload-btn" id="rights-btn">Seleccionar documento</button> 
+            <span id="rights-name" style="margin-left:10px; color:#5a2f1f;"></span>
+
+            <button id="upload-btn" class="upload-btn">Subir libro</button>
+
+
+            <p id="upload-error" style="color:red; display:none;">
+                Debes subir el PDF del libro y el documento de derechos de autor.
+            </p>
+        </div>
+
+        <div class="book-list" id="subidos-list"></div>
+
+        <!-- LIBROS CREADOS -->
+        <div class="section-title">Libros creados</div>
+        <div class="book-list" id="creados-list"></div>
+
+    </div>
+
+<script>
+    /* ESTRELLAS */
+    const stars = document.querySelectorAll(".star");
+
+    stars.forEach(star => {
+        star.addEventListener("click", () => {
+            const value = star.dataset.value;
+            stars.forEach(s => s.classList.remove("active"));
+            for (let i = 0; i < value; i++) stars[i].classList.add("active");
+            localStorage.setItem("puntuacion", value);
+        });
+    });
+
+    const savedRating = localStorage.getItem("puntuacion");
+    if (savedRating) {
+        for (let i = 0; i < savedRating; i++) stars[i].classList.add("active");
+    }
+
+    /* LIBROS SUBIDOS */
+    let subidos = JSON.parse(localStorage.getItem("subidos")) || [];
+    const subidosList = document.getElementById("subidos-list");
+
+    /* BUSCADOR */
+    const buscador = document.createElement("input");
+    buscador.placeholder = "Buscar libro...";
+    buscador.style = "width:100%; padding:10px; border-radius:10px; border:1px solid #a3684f; margin-bottom:10px;";
+    subidosList.before(buscador);
+
+    buscador.addEventListener("input", () => {
+        renderSubidos(buscador.value.toLowerCase());
+    });
+
+    function renderSubidos(filtro = "") {
+        subidosList.innerHTML = "";
+        const filtrados = subidos.filter(b => b.name.toLowerCase().includes(filtro));
+
+        if (filtrados.length === 0) {
+            subidosList.innerHTML = "<p>No hay libros que coincidan.</p>";
+            return;
+        }
+
+        filtrados.forEach((book, index) => {
+            subidosList.innerHTML += `
+                <div class="book-item">
+                    <img src="${book.cover}" class="book-cover">
+
+                    <div style="flex:1;">
+                        <div onclick="window.open('${book.pdf}', '_blank')" style="cursor:pointer;">
+                            <strong>${book.name}</strong>
+                        </div>
+
+                        <button class="upload-btn" onclick="window.open('${book.rightsFile}', '_blank')" 
+                            style="padding:5px 10px; font-size:14px; margin-top:5px;">
+                            Documento de derechos
+                        </button>
+
+                        <button class="upload-btn edit-btn" data-index="${index}"
+                            style="padding:5px 10px; font-size:14px; margin-top:5px;">
+                            Editar nombre
+                        </button>
+
+                        <button class="upload-btn portada-btn" data-index="${index}"
+                            style="padding:5px 10px; font-size:14px; margin-top:5px;">
+                            Cambiar portada
+                        </button>
+                    </div>
+
+                    <button class="delete-btn" data-index="${index}">
+                        <img src="borrar.png">
+                    </button>
+                </div>
+            `;
+        });
+
+        /* BORRAR */
+        document.querySelectorAll(".delete-btn").forEach(btn => {
+            btn.addEventListener("click", e => {
+                const i = e.target.closest("button").dataset.index;
+                subidos.splice(i, 1);
+                localStorage.setItem("subidos", JSON.stringify(subidos));
+                renderSubidos(buscador.value.toLowerCase());
+            });
+        });
+
+        /* EDITAR NOMBRE */
+        document.querySelectorAll(".edit-btn").forEach(btn => {
+            btn.addEventListener("click", e => {
+                const i = e.target.dataset.index;
+                const nuevoNombre = prompt("Nuevo nombre para el libro:", subidos[i].name);
+
+                if (nuevoNombre && nuevoNombre.trim() !== "") {
+                    subidos[i].name = nuevoNombre.trim();
+                    localStorage.setItem("subidos", JSON.stringify(subidos));
+                    renderSubidos(buscador.value.toLowerCase());
+                }
+            });
+        });
+
+        /* CAMBIAR PORTADA */
+        document.querySelectorAll(".portada-btn").forEach(btn => {
+            btn.addEventListener("click", e => {
+                const i = e.target.dataset.index;
+
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "image/*";
+                input.style.display = "none";
+
+                input.addEventListener("change", () => {
+                    const file = input.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = ev => {
+                        subidos[i].cover = ev.target.result;
+                        localStorage.setItem("subidos", JSON.stringify(subidos));
+                        renderSubidos(buscador.value.toLowerCase());
+                    };
+                    reader.readAsDataURL(file);
+                });
+
+                input.click();
+            });
+        });
+    }
+
+    renderSubidos();
+
+    /* SUBIR PDF + DERECHOS + MINIATURA */
+    /* SUBIR PDF + DERECHOS + MINIATURA */
+document.getElementById("upload-btn").addEventListener("click", () => {
+    const pdf = document.getElementById("pdf-input").files[0];
+    const rights = document.getElementById("rights-input").files[0];
+    const errorMsg = document.getElementById("upload-error");
+
+    if (!pdf || !rights) {
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    errorMsg.style.display = "none";
+
+    const pdfURL = URL.createObjectURL(pdf);
+    const rightsURL = URL.createObjectURL(rights);
+
+    const cover = "portada_generica.png";
+
+    const newBook = {
+        name: pdf.name,
+        pdf: pdfURL,
+        cover: cover,
+        rightsFile: rightsURL
+    };
+
+    subidos.push(newBook);
+    localStorage.setItem("subidos", JSON.stringify(subidos));
+    renderSubidos(buscador.value.toLowerCase());
+
+    /* 🔥 RESETEAR BOTONES Y TEXTOS DESPUÉS DE SUBIR */
+    document.getElementById("pdf-input").value = "";
+    document.getElementById("rights-input").value = "";
+
+    document.getElementById("pdf-name").textContent = "Ningún archivo seleccionado";
+    document.getElementById("rights-name").textContent = "Ningún archivo seleccionado";
+});
+
+
+    /* LIBROS CREADOS */
+    let creados = JSON.parse(localStorage.getItem("libros_creados")) || [];
+    const creadosList = document.getElementById("creados-list");
+
+    function renderCreados() {
+        creadosList.innerHTML = "";
+
+        if (creados.length === 0) {
+            creadosList.innerHTML = "<p>No has creado ningún libro todavía.</p>";
+            return;
+        }
+
+        creados.forEach((libro, i) => {
+            creadosList.innerHTML += `
+                <div class="book-item">
+                    <img src="${libro.portada}" class="book-cover">
+                    <div onclick="abrirLibroCreado(${i})" style="cursor:pointer;">
+                        <strong>${libro.titulo}</strong>
+                    </div>
+                    <button class="delete-btn" data-index="${i}">
+                        <img src="papelera.png">
+                    </button>
+                </div>
+            `;
+        });
+
+        document.querySelectorAll("#creados-list .delete-btn").forEach(btn => {
+            btn.addEventListener("click", e => {
+                const i = e.target.closest("button").dataset.index;
+                creados.splice(i, 1);
+                localStorage.setItem("libros_creados", JSON.stringify(creados));
+                renderCreados();
+            });
+        });
+    }
+
+    renderCreados();
+
+    function abrirLibroCreado(i) {
+        const libro = creados[i];
+        const nuevaVentana = window.open("", "_blank");
+        nuevaVentana.document.write(`
+            <html>
+            <head>
+                <title>${libro.titulo}</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        padding: 40px;
+                        background: #f5e9d6;
+                        line-height: 1.6;
+                        font-size: 18px;
+                    }
+                    h1 {
+                        text-align: center;
+                        color: #5a2f1f;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>${libro.titulo}</h1>
+                <p>${libro.contenido.replace(/\n/g, "<br>")}</p>
+            </body>
+            </html>
+        `);
+    }
+
+    /* FOTO DE PERFIL — SIEMPRE CAMBIABLE */
+    const profileInput = document.getElementById("profile-input");
+    const profilePic = document.getElementById("profile-pic");
+
+    profilePic.addEventListener("click", () => {
+        profileInput.click();
+    });
+
+    profileInput.addEventListener("change", function() {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = e => {
+            profilePic.src = e.target.result;
+            profilePic.style.borderRadius = "50%";
+            localStorage.setItem("foto_perfil", e.target.result);
+        };
+        reader.readAsDataURL(file);
+    });
+
+    const savedFoto = localStorage.getItem("foto_perfil");
+    if (savedFoto) {
+        profilePic.src = savedFoto;
+        profilePic.style.borderRadius = "50%";
+    }
+    /* BOTONES MARRONES PARA LOS INPUTS DE ARCHIVO */
+const pdfInput = document.getElementById("pdf-input");
+const pdfBtn = document.getElementById("pdf-btn");
+const pdfName = document.getElementById("pdf-name");
+
+pdfBtn.addEventListener("click", () => pdfInput.click());
+
+pdfInput.addEventListener("change", () => {
+    pdfName.textContent = pdfInput.files.length > 0 
+        ? pdfInput.files[0].name 
+        : "Ningún archivo seleccionado";
+});
+
+
+const rightsInput = document.getElementById("rights-input");
+const rightsBtn = document.getElementById("rights-btn");
+const rightsName = document.getElementById("rights-name");
+
+rightsBtn.addEventListener("click", () => rightsInput.click());
+
+rightsInput.addEventListener("change", () => {
+    rightsName.textContent = rightsInput.files.length > 0 
+        ? rightsInput.files[0].name 
+        : "Ningún archivo seleccionado";
+});
+
+</script>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Favoritos</title>
+
+    <style>
+        body {
+            background: #e8dcc7;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            position: relative;
+        }
+
+        /* Botón de inicio */
+        .main-left-btn {
+            position: absolute;
+            left: 20px;
+            top: -40px; /* A la altura del título */
+            width: 200px;
+            height: 200px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .main-left-btn img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a2f1f;
+            font-size: 36px;
+            margin-top: 0;
+        }
+
+        /* Contenedor de tarjetas en fila */
+        #fav-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            width: 250px;
+            background: rgba(163, 104, 79, 0.35);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .book-card img {
+            width: 150px;
+            border-radius: 10px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .author {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Botón de inicio -->
+<a href=".html">
+            <button class="main-left-btn">
+                <img src="Copilot_20260220_125130.png" alt="icono" />
+            </button>
+        </a>
+
+<h1>Mis Favoritos</h1>
+
+<div id="fav-list"></div>
+
+<script>
+    const favs = JSON.parse(localStorage.getItem("favoritos")) || [];
+    const container = document.getElementById("fav-list");
+
+    if (favs.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>No tienes libros favoritos aún.</p>";
+    } else {
+        favs.forEach(book => {
+            container.innerHTML += `
+                <div class="book-card" onclick="window.location.href='${book.link}'">
+                    <img src="${book.cover}" alt="portada">
+                    <div class="title">${book.title}</div>
+                    <div class="author">${book.author}</div>
+                </div>
+            `;
+        });
+    }
+</script>
+
+</body>
+</html>
+
+

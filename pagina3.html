@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Libreria las Maravillas</title>
+    <link rel="stylesheet" href="css3/.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Barra lateral izquierda -->
+    <aside class="sidebar left">
+        <button class="side-icon heart-btn" onclick="window.location.href='favoritos.html'">
+            <img src="BCO.4772516f-4e39-4860-9f5f-9026741e106a.png" alt="corazon" />
+        </button>
+
+        <button class="side-icon book-btn" onclick="window.location.href='escribiendo.html'">
+            <img src="libro.png" alt="libro" />
+        </button>
+
+        <button class="side-icon user-btn" onclick="window.location.href='perfil.html'">
+            <img src="perfil.png" alt="usuario" />
+        </button>
+    </aside>
+
+    <!-- Contenido central -->
+    <main class="main">
+
+        <a href=".html">
+            <button class="main-left-btn">
+                <img src="Copilot_20260220_125130.png" alt="icono" />
+            </button>
+        </a>
+
+        <div class="search-wrapper">
+            <input type="text" placeholder="Hinted search text">
+        </div>
+
+    </main>
+
+</div> <!-- cierre container -->
+
+<!-- PORTADA + ESTRELLA -->
+<div class="left-center-image" 
+    data-book-id="cumbres"
+    data-title="Cumbres Borrascosas"
+    data-author="Emily Brönte"
+    data-cover="ssssss.jpg"
+    data-link="pagina3.html">
+
+    <img src="ssssss.jpg" class="book-image" alt="portada libro">
+
+    <button class="star-btn-overlay">
+        <img src="estre.png" class="star-icon" alt="estrella">
+    </button>
+</div>
+
+<!-- PANEL DE INFORMACIÓN -->
+<div class="book-info-panel">
+    <h2 class="info-title">Cumbres Borrascosas</h2>
+
+    <p class="info-label">Autor</p>
+    <div class="info-box">Emily Brönte</div>
+
+    <p class="info-label">Género</p>
+    <div class="info-box">Romántica</div>
+
+    <p class="info-label">Capítulos</p>
+    <div class="info-box">34</div>
+
+    <!-- BOTÓN QUE ABRE EL PDF -->
+    <a href="Cumbres Borrascosas.pdf" target="_blank">
+        <button class="read-button">Empezar a Leer</button>
+    </a>
+</div>
+
+<!-- ⭐ JAVASCRIPT FAVORITOS -->
+<script>
+document.querySelectorAll('.star-btn-overlay').forEach(btn => {
+    btn.addEventListener('click', () => {
+
+        const container = btn.closest('.left-center-image');
+
+        const book = {
+            id: container.dataset.bookId,
+            title: container.dataset.title,
+            author: container.dataset.author,
+            cover: container.dataset.cover,
+            link: container.dataset.link
+        };
+
+        const img = btn.querySelector('.star-icon');
+        btn.classList.toggle('active');
+
+        let favs = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+        if (btn.classList.contains('active')) {
+            img.src = "estreerell.png";
+
+            if (!favs.some(b => b.id === book.id)) {
+                favs.push(book);
+                localStorage.setItem("favoritos", JSON.stringify(favs));
+            }
+
+        } else {
+            img.src = "estre.png";
+
+            favs = favs.filter(b => b.id !== book.id);
+            localStorage.setItem("favoritos", JSON.stringify(favs));
+        }
+    });
+});
+</script>
+
+</body>
+</html>

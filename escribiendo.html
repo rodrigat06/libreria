@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Escribiendo mi Libro</title>
+
+    <style>
+        body {
+            background: #e8dcc7;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .page-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Botón de inicio */
+        .main-left-btn {
+            position: absolute;
+            left: -150px;
+            top: -90px;
+            width: 200px;
+            height: 200px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .main-left-btn img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Título */
+        h1 {
+            text-align: center;
+            color: #5a2f1f;
+            font-size: 40px;
+            margin: 20px 0 40px 0;
+        }
+
+        /* Botón de guardado */
+        .save-btn {
+            position: absolute;
+            right: 100px;
+            top: -30px;
+            width: 80px;
+            height: 80px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .save-btn img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Botón crear libro */
+        .create-book-btn {
+            position: absolute;
+            right: 0;
+            top: -30px;
+            width: 80px;
+            height: 80px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .create-book-btn img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Área de texto */
+        textarea {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            border: 2px solid #a3684f;
+            padding: 15px;
+            font-size: 16px;
+            resize: vertical;
+            background: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
+        }
+
+        /* Lista de capítulos */
+        .chapters-container {
+            margin-top: 40px;
+        }
+
+        .chapters-title {
+            font-size: 24px;
+            color: #5a2f1f;
+            margin-bottom: 10px;
+        }
+
+        .chapter-item {
+            background: rgba(163, 104, 79, 0.35);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chapter-text {
+            cursor: pointer;
+            width: 80%;
+        }
+
+        .chapter-title {
+            font-weight: bold;
+        }
+
+        .chapter-preview {
+            font-size: 14px;
+            margin-top: 5px;
+            color: #3f2418;
+        }
+
+        /* Botón borrar */
+        .delete-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .delete-btn img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page-container">
+
+    <!-- Botón de inicio -->
+    <a href=".html">
+            <button class="main-left-btn">
+                <img src="Copilot_20260220_125130.png" alt="icono" />
+            </button>
+        </a>
+
+    <!-- Título -->
+    <h1>Escribiendo mi Libro</h1>
+
+    <!-- Botón de guardado -->
+    <button class="save-btn" id="save-btn">
+        <img src="guardados.png" alt="guardar">
+    </button>
+
+    <!-- Botón crear libro (✔️ que enviaste) -->
+    <button class="create-book-btn" id="create-book-btn">
+        <img src="terminado.png" alt="crear libro">
+    </button>
+
+    <!-- Área de texto -->
+    <textarea id="editor" placeholder="Escribe aquí tu capítulo..."></textarea>
+
+    <!-- Lista de capítulos -->
+    <div class="chapters-container">
+        <div class="chapters-title">Capítulos guardados</div>
+        <div id="chapters-list"></div>
+    </div>
+
+</div>
+
+<script>
+    const editor = document.getElementById("editor");
+    const saveBtn = document.getElementById("save-btn");
+    const createBookBtn = document.getElementById("create-book-btn");
+    const chaptersList = document.getElementById("chapters-list");
+
+    let chapters = JSON.parse(localStorage.getItem("capitulos")) || [];
+    let librosCreados = JSON.parse(localStorage.getItem("libros_creados")) || [];
+
+    function renderChapters() {
+        chaptersList.innerHTML = "";
+
+        if (chapters.length === 0) {
+            chaptersList.innerHTML = "<p>No hay capítulos guardados todavía.</p>";
+            return;
+        }
+
+        chapters.forEach((ch, index) => {
+            const div = document.createElement("div");
+            div.className = "chapter-item";
+
+            div.innerHTML = `
+                <div class="chapter-text">
+                    <div class="chapter-title">Capítulo ${index + 1}</div>
+                    <div class="chapter-preview">${ch.substring(0, 80)}${ch.length > 80 ? "..." : ""}</div>
+                </div>
+
+                <button class="delete-btn" data-index="${index}">
+                    <img src="borrar.png" alt="borrar">
+                </button>
+            `;
+
+            div.querySelector(".chapter-text").addEventListener("click", () => {
+                editor.value = ch;
+            });
+
+            div.querySelector(".delete-btn").addEventListener("click", (e) => {
+                const i = e.target.closest("button").dataset.index;
+                chapters.splice(i, 1);
+                localStorage.setItem("capitulos", JSON.stringify(chapters));
+                renderChapters();
+            });
+
+            chaptersList.appendChild(div);
+        });
+    }
+
+    renderChapters();
+
+    // Guardar capítulo normal
+    saveBtn.addEventListener("click", () => {
+        const text = editor.value.trim();
+        if (text === "") {
+            alert("Escribe algo antes de guardar.");
+            return;
+        }
+
+        chapters.push(text);
+        localStorage.setItem("capitulos", JSON.stringify(chapters));
+        editor.value = "";
+        renderChapters();
+    });
+
+    // Crear libro (guardar en perfil.html)
+    createBookBtn.addEventListener("click", () => {
+        const text = editor.value.trim();
+        if (text === "") {
+            alert("Escribe algo antes de crear el libro.");
+            return;
+        }
+
+        const nuevoLibro = {
+            titulo: "Libro creado " + (librosCreados.length + 1),
+            contenido: text
+        };
+
+        librosCreados.push(nuevoLibro);
+        localStorage.setItem("libros_creados", JSON.stringify(librosCreados));
+
+        alert("Libro creado y guardado en tu perfil.");
+
+        editor.value = "";
+    });
+</script>
+
+</body>
+</html>

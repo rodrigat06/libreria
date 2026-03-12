@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Librería Las Maravillas</title>
+    <link rel="stylesheet" href="cssinicio/.css">
+
+    
+</head>
+
+<body>
+
+<!-- LOGO -->
+<img src="Copilot_20260220_125130.png" class="logo" alt="logo">
+
+<!-- TÍTULO -->
+<h1 class="main-title">LIBRERÍA LAS MARAVILLAS</h1>
+
+<!-- PANTALLA DE INICIO DE SESIÓN -->
+<div id="login-screen" class="center-box">
+    <h2>Iniciar Sesión</h2>
+
+    <input type="text" id="login-user" placeholder="Usuario">
+    <input type="password" id="login-pass" placeholder="Contraseña">
+
+    <button class="btn" onclick="login()">Acceder</button>
+
+    <span class="link-btn" onclick="showRegister()">¿No tienes cuenta?</span>
+</div>
+
+<!-- PANTALLA DE REGISTRO -->
+<div id="register-screen" class="center-box hidden">
+    <h2>Crear Cuenta</h2>
+
+    <input type="text" id="reg-name" placeholder="Nombre">
+    <input type="text" id="reg-lastname" placeholder="Apellidos">
+    <input type="email" id="reg-email" placeholder="Email">
+    <input type="password" id="reg-pass" placeholder="Contraseña">
+
+    <button class="btn" onclick="register()">Crear Cuenta</button>
+
+    <span class="link-btn" onclick="showLogin()">¿Ya tienes cuenta?</span>
+</div>
+
+<script>
+    function showRegister() {
+        document.getElementById("login-screen").classList.add("hidden");
+        document.getElementById("register-screen").classList.remove("hidden");
+    }
+
+    function showLogin() {
+        document.getElementById("register-screen").classList.add("hidden");
+        document.getElementById("login-screen").classList.remove("hidden");
+    }
+
+    // VALIDACIÓN LOGIN + REDIRECCIÓN
+    function login() {
+        let user = document.getElementById("login-user").value.trim();
+        let pass = document.getElementById("login-pass").value.trim();
+
+        if (user === "" || pass === "") {
+            alert("Por favor, rellena todos los campos.");
+            return;
+        }
+
+        // Aquí puedes poner tus datos reales
+        if (user === "admin" && pass === "1234") {
+            alert("Inicio de sesión correcto.");
+            window.location.href = ".html";  // ⭐ AQUÍ CAMBIAS EL HTML AL QUE QUIERAS IR
+        } else {
+            alert("Usuario o contraseña incorrectos.");
+        }
+    }
+
+    // VALIDACIÓN REGISTRO
+    function register() {
+        let name = document.getElementById("reg-name").value.trim();
+        let lastname = document.getElementById("reg-lastname").value.trim();
+        let email = document.getElementById("reg-email").value.trim();
+        let pass = document.getElementById("reg-pass").value.trim();
+
+        if (name === "" || lastname === "" || email === "" || pass === "") {
+            alert("Por favor, rellena todos los campos.");
+            return;
+        }
+
+        alert("Cuenta creada correctamente. Ahora puedes iniciar sesión.");
+        showLogin();
+    }
+</script>
+
+</body>
+</html>
+
