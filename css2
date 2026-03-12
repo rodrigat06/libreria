@@ -1,0 +1,366 @@
+/* PÁGINA ENTERA EN CREMITA OSCURO */
+html, body {
+    background: #e8dcc7;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: block;
+}
+
+/* CONTENEDOR */
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+    background: transparent;
+}
+
+/* BARRA LATERAL IZQUIERDA */
+.sidebar {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+/* BOTONES LATERALES BASE */
+.side-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.25);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ❤️ PRIMER BOTÓN DE LA BARRA IZQUIERDA: CORAZÓN */
+.heart-btn {
+    background: none !important;
+    border: none;
+    padding: 0;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* CONTENIDO CENTRAL */
+.main {
+    padding: 40px 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* BOTÓN IZQUIERDA — ICONO APLICADO AQUÍ */
+.main-left-btn {
+    position: absolute;
+    left: -50px;
+    top: -30px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.main-left-btn img { 
+    width: 100%; 
+    height: 100%; 
+    display: block;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* BARRA DE BÚSQUEDA */
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-wrapper input {
+    width: 80%;
+    padding: 20px 25px;
+    font-size: 20px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+
+    background: rgba(163, 104, 79, 0.55);
+    backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+
+/* BOTONES INFERIORES DERECHA */
+.bottom-right-buttons {
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    display: flex;
+    gap: 12px;
+}
+
+.br-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 📖 SEGUNDO BOTÓN DE LA BARRA IZQUIERDA: LIBRO */
+.book-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* 👤 TERCER BOTÓN DE LA BARRA IZQUIERDA: USUARIO */
+.user-btn {
+    background: none !important;
+    border: none;
+    padding: 0;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* 🔖 CUARTO BOTÓN DE LA BARRA IZQUIERDA: MARCADOR */
+.bookmark-btn {
+    background: none !important;
+    border: none;
+    padding: 0;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookmark-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ➕ BOTONES DE LA BARRA IZQUIERDA: AÑADIR USUARIO */
+.adduser-btn {
+    background: none !important;
+    border: none;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adduser-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* 🔺 PRIMER BOTÓN INFERIOR DERECHA: TRIÁNGULO */
+.triangle-btn {
+    background: none !important;
+    border: none;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.triangle-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* 👤 BOTONES DE PERFIL EN LA BARRA INFERIOR DERECHA */
+.profile-btn {
+    background: none !important;
+    border: none;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+
+/* Imagen centrada hacia la izquierda */
+.left-center-image {
+    position: absolute;
+    left: 350px;        /* distancia desde la izquierda */
+    top: 50%;           /* centro vertical */
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-center-image img {
+    width: 260px;       /* tamaño de la imagen */
+    height: auto;
+    border-radius: 10px;
+}
+
+.book-image-container {
+  position: relative;
+  width: 260px; /* o el tamaño que estés usando */
+}
+
+.book-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Estrella en la esquina superior derecha */
+.book-image-container {
+  position: relative;
+  width: 260px; /* o el tamaño que estés usando */
+}
+
+.book-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Botón de estrella en la esquina superior derecha */
+.star-btn-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-btn-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Panel de información a la derecha del libro */
+.book-info-panel {
+    position: absolute;
+    left: 650px;   /* Ajusta según dónde tengas la portada */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: Arial, sans-serif;
+}
+
+.info-title {
+    margin: 0 0 10px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.info-label {
+    margin: 5px 0 3px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.info-box {
+    width: 100%;
+    height: 35px;
+    border-radius: 6px;
+}
+
+/* Botón negro */
+.read-button {
+    margin-top: 15px;
+    width: 200px;
+    height: 45px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
